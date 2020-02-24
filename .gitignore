@@ -21,6 +21,6 @@ yarn-error.log*
 *.sw?
 
 # Prettier and ESLint
-.prettierrc
-.eslintrc
-.browserslistrc
+/prettierrc
+/eslintrc
+/browserslistrc
