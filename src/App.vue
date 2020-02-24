@@ -1,13 +1,26 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link>
-      <router-link to="/categories">Categories</router-link>
-      <router-link to="/about">About</router-link>
-    </div>
+  <b-container id="app">
+    <appHeader />
     <router-view />
-  </div>
+    <appFooter />
+  </b-container>
 </template>
+
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator'
+import appHeader from './components/Header.vue'
+import appFooter from './components/Footer.vue'
+
+// Refers to the imported Component
+@Component({
+  components: {
+    appHeader,
+    appFooter
+  }
+})
+// This Module needs to be have a default export, otherwise, error.
+export default class App extends Vue {}
+</script>
 
 <style>
 #app {
@@ -16,18 +29,5 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
 }
 </style>
