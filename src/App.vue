@@ -1,9 +1,9 @@
 <template>
-  <b-container id="app">
+  <div class="container" id="app">
     <appHeader />
     <router-view />
     <appFooter />
-  </b-container>
+  </div>
 </template>
 
 <script lang="ts">
@@ -22,12 +22,17 @@ import appFooter from './components/Footer.vue'
 export default class App extends Vue {}
 </script>
 
-<style>
+<style scoped>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+.container {
+  padding-left: 0;
+  padding-right: 0;
 }
 </style>
