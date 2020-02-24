@@ -20,7 +20,7 @@ yarn-error.log*
 *.sln
 *.sw?
 
-# Prettier and ESLint
-/prettierrc
-/eslintrc
-/browserslistrc
+# Prettier and ESLint directories
+.prettierrc.js
+.eslintrc.js
+.browserslistrc
