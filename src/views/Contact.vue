@@ -1,3 +1,3 @@
 <template>
-  <h1>Categories</h1>
+  <h1>Contact</h1>
 </template>
