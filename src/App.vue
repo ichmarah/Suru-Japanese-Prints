@@ -1,7 +1,7 @@
 <template>
   <div class="container" id="app">
     <appHeader />
-    <router-view />
+    <router-view class="main-top-margin" />
     <appFooter />
   </div>
 </template>
@@ -34,5 +34,9 @@ export default class App extends Vue {}
 .container {
   padding-left: 0;
   padding-right: 0;
+}
+
+.main-top-margin {
+  margin-top: 56.5px;
 }
 </style>
