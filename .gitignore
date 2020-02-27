@@ -28,3 +28,6 @@ yarn-error.log*
 
 # Browers list
 .browserslistrc
+
+# Keys
+.keys.js

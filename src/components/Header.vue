@@ -45,15 +45,12 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import Vue from 'vue'
 
-@Component({
-  name: 'Header'
-})
 export default class Header extends Vue {
   show: boolean = false
 
-  onClick(): boolean {
+  onClick(): Boolean {
     return (this.show = !this.show) // show beocmes true, meaning, the bound class gets "show" as part of the class name
   }
 }

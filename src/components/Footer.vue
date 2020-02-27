@@ -2,7 +2,6 @@
   <footer class="pt-4 my-md-5 pt-md-5 border-top footer">
     <div class="row sitemap">
       <div class="col-6 col-md">
-        
         <ul class="list-unstyled text-small">
           <h5>Menu</h5>
           <li>
@@ -45,9 +44,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import Vue from 'vue'
+import { Prop } from 'vue-property-decorator'
 
-@Component
 export default class Footer extends Vue {
   date: Date = new Date()
 }
