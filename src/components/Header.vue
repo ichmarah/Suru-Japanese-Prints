@@ -46,11 +46,15 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import Component from 'vue-class-component'
 
+@Component({
+  name: 'Header'
+})
 export default class Header extends Vue {
   show: boolean = false
 
-  onClick(): Boolean {
+  onClick(): boolean {
     return (this.show = !this.show) // show beocmes true, meaning, the bound class gets "show" as part of the class name
   }
 }

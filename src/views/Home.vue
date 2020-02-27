@@ -1,11 +1,14 @@
 <template>
-  <h1>hello</h1>
+  <Prints />
 </template>
-
 
 <script lang="ts">
 import Vue from 'vue'
+import Component from 'vue-class-component'
 import Prints from '../components/Prints.vue'
 
-export default class Prints extends Vue {}
+@Component({
+  components: { Prints }
+})
+export default class Home extends Vue {}
 </script>

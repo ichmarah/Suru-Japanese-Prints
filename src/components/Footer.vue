@@ -45,8 +45,9 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { Prop } from 'vue-property-decorator'
+import Component from 'vue-class-component'
 
+@Component
 export default class Footer extends Vue {
   date: Date = new Date()
 }
