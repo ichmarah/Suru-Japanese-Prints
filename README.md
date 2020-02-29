@@ -23,8 +23,7 @@ Suru is a website I created as a take-home test for a taineeship position at [DT
 * Footer with generated sitemap
 
 ## Built with
-<a href="https://vuejs.org/"><img src="public/vue-icon.png"></a>
-
+[Vue.js](https://vuejs.org/) and [TypeScript](https://www.typescriptlang.org/)
 
 ### Lints and fixes files
 ```
