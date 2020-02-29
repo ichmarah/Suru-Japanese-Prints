@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Categories from '../views/Categories.vue'
 import Random from '../views/Random.vue'
 import About from '../views/About.vue'
+import DetailPage from '../components/DetailPage.vue'
 
 Vue.use(VueRouter)
 
@@ -12,6 +13,11 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/object/objectid', // This path is according to Harvard Art's API request for a resource: GET /object/ "OBJECT_ID will get the full record of the specified object."
+    name: 'DetailPage',
+    component: DetailPage
   },
   {
     path: '/categories',
@@ -25,7 +31,6 @@ const routes = [
   },
   {
     path: '/about',
-    name: 'About',
     component: About
   }
 ]

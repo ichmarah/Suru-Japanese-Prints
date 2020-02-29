@@ -4,53 +4,52 @@
   Meaning, the button needs to get a @click refering to a function (in this case onClick). This functions changes the value of show to true or false, depending on the initial value of show.
 -->
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-    <a class="navbar-brand" href="/">Suru</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarNav"
-      aria-controls="navbarNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-      @click="onClick"
-    >
-      <span class="navbar-toggler-icon"></span>
-      Menu
-    </button>
-    <div
-      id="navbarCollapse"
-      class="navbar-collapse collapse"
-      :class="
-        show ? 'navbar-collapse collapse show' : 'navbar-collapse collapse'
-      "
-    >
-      <ul class="navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link" href="/">Home </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/categories">Categories</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/random">Random</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/about">About</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+  <header class="page-header">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+      <a class="navbar-brand" href="/">Suru</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+        @click="onClick"
+      >
+        <span class="navbar-toggler-icon"></span>
+        Menu
+      </button>
+      <div
+        id="navbarCollapse"
+        :class="
+          show ? 'navbar-collapse collapse show' : 'navbar-collapse collapse'
+        "
+      >
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a href="/" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="/categories" class="nav-link">Categories</a>
+          </li>
+          <li class="nav-item">
+            <a href="/random" class="nav-link">Random</a>
+          </li>
+          <li class="nav-item">
+            <a href="/About" class="nav-link">About</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
-@Component({
-  name: 'Header'
-})
+@Component
 export default class Header extends Vue {
   show: boolean = false
 
@@ -60,4 +59,8 @@ export default class Header extends Vue {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.page-header {
+  padding: 15px 25px 0;
+}
+</style>

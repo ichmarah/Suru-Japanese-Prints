@@ -1,11 +1,13 @@
 <template>
-  <footer class="pt-4 my-md-5 pt-md-5 border-top footer">
+  <footer class="footer mt-auto py-3 border-top">
     <div class="row sitemap">
       <div class="col-6 col-md">
         <ul class="list-unstyled text-small">
           <h5>Menu</h5>
           <li>
-            <a class="text-muted" href="/">Home</a>
+            <a class="text-muted" href="/"
+              >Home <span class="sr-only">(current)</span></a
+            >
           </li>
           <li>
             <a class="text-muted" href="/categories">Categories</a>
@@ -54,12 +56,12 @@ export default class Footer extends Vue {
 </script>
 
 <style scoped>
-.footer {
+/* .footer {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-}
+} */
 
 #footer-credit {
   font-size: 12px;
