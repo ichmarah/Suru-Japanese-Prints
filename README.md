@@ -3,6 +3,9 @@
 ## About
 Suru is a website I created as a take-home test for a taineeship position at [DTT](https://www.d-tt.nl/). The public API was retrieved from the [Harvard Art Museum](https://www.harvardartmuseums.org/).   
 
+## Author
+[Ichmarah Kock](https://www.linkedin.com/in/ichmarah)
+
 ## Setup
 * Clone this project from https://github.com/ichmarah/DTT-test
 * Install [Node](https://nodejs.org)
