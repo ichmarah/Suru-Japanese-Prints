@@ -12,10 +12,8 @@ There are two reasons why we want to start our HTTP calls in the created method.
         <span class="sr-only">Loading...</span>
       </div>
     </div>
-    <div :for="item in items" :key="item.objectid">
-      <ul>
-        <li>{{ item.title }}</li>
-      </ul>
+    <div class="conainter" :class="allPrints()">
+      <SinglePrint v-for="(item, index) in items" :key="index" :item="item" />
     </div>
   </section>
 </template>
@@ -26,11 +24,13 @@ import Component from 'vue-class-component'
 import { apikey } from '../keys'
 // eslint-disable-next-line no-unused-vars
 import { AxiosResponse } from 'axios'
-// import { SinglePrint } from './SinglePrint'
+import SinglePrint from './SinglePrint.vue'
 
-@Component({})
+@Component({
+  components: { SinglePrint }
+})
 export default class Prints extends Vue {
-  public items: Array<any> = []
+  items: Array<any> = []
   page: number = 1 // Harvard Art's data shows 1 page having 10 records
   isLoading: boolean = true
 
@@ -39,14 +39,14 @@ export default class Prints extends Vue {
       .get(
         `https://api.harvardartmuseums.org/object?&apikey=${apikey}&worktype=print&culture=Japanese&hasimage=1&sort=title&sortorder=desc`
       )
-      .then(
-        (response: AxiosResponse) => (
-          (this.isLoading = true),
-          (this.items = response.data.records),
-          (this.isLoading = false),
-          console.log('Items: ', this.items, 'isLoading: ', this.isLoading)
-        )
-      )
+      .then((response: AxiosResponse) => {
+        (this.isLoading = true),
+        (this.items = response.data.records),
+        (this.page = response.data.info.pages),
+        (this.isLoading = false)
+        // console.log('Items: ', this.items, 'isLoading: ', this.isLoading)
+        return this.items, this.isLoading
+      })
       .catch(error => console.log(error))
   }
 
