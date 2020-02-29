@@ -6,7 +6,7 @@ Suru is a website I created as a take-home test for a taineeship position at [DT
 ## Author
 [Ichmarah Kock](https://www.linkedin.com/in/ichmarah)
 
-## Setup
+## Setup :rocket:
 * Clone this project from https://github.com/ichmarah/DTT-test
 * Install [Node](https://nodejs.org)
 * At root of project type `npm install && npm run serve` or `yarn install && yarn serve`
