@@ -12,7 +12,7 @@ There are two reasons why we want to start our HTTP calls in the created method.
         <span class="sr-only">Loading...</span>
       </div>
     </div>
-    <div class="conainter" :class="allPrints()">
+    <div class="prints" :class="allPrints()">
       <SinglePrint v-for="(item, index) in items" :key="index" :item="item" />
     </div>
   </section>
@@ -37,14 +37,14 @@ export default class Prints extends Vue {
   async allPrints() {
     await this.$http
       .get(
-        `https://api.harvardartmuseums.org/object?&apikey=${apikey}&worktype=print&culture=Japanese&hasimage=1&sort=title&sortorder=desc`
+        `https://api.harvardartmuseums.org/object?&apikey=${apikey}&worktype=print&culture=Japanese&hasimage=1&sort=title&sortorder=asc`
       )
       .then((response: AxiosResponse) => {
         (this.isLoading = true),
         (this.items = response.data.records),
         (this.page = response.data.info.pages),
         (this.isLoading = false)
-        // console.log('Items: ', this.items, 'isLoading: ', this.isLoading)
+        // console.log('Items: ', this.items, 'isLoading: ', this.isLoading, this.item.people.name)
         return this.items, this.isLoading
       })
       .catch(error => console.log(error))
@@ -55,3 +55,9 @@ export default class Prints extends Vue {
   // }
 }
 </script>
+
+<style scoped>
+/* .prints {
+  position: relative;
+} */
+</style>

@@ -63,4 +63,14 @@ export default class Header extends Vue {
 .page-header {
   padding: 15px 25px 0;
 }
+
+.navbar-brand {
+  padding-left: 20px;
+}
+
+.navbar-nav {
+  padding-right: 35px;
+  margin-bottom: 0;
+  margin-left: auto;
+}
 </style>

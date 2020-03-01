@@ -7,16 +7,19 @@ However, since we need to inlcude 'params' in the v-bind:to for the path of this
   <router-link
     :to="{ name: 'DetailPage', params: { objectId: item.objectid } }"
   >
-    <div>
-      <img
-        :src="item.primaryimageurl"
-        class="card-img-top"
-        alt="Image of print"
-      />
-      <div class="card-body">
-        <p class="card-text">{{ item.objectnumber }}</p>
-        <h5 class="card-title">{{ item.name }}</h5>
-        <p class="card-text">{{ item.title }}</p>
+    <div class="card-body">
+      <div class="single-card">
+        <!-- If item.primaryimageurl = null in JSON file, a message informs the client about this -->
+        <img
+          v-if="item.primaryimageurl"
+          :src="item.primaryimageurl"
+          class="card-img-top"
+          alt="Image of print"
+        />
+        <p v-else><i>No image available at the moment</i></p>
+        <p class="card-text single-card-grey">{{ item.objectnumber }}</p>
+        <h6 class="card-text single-card-black">{{ item.people[0].name }}</h6>
+        <p class="card-title single-card-dark-grey">{{ item.title }}</p>
       </div>
     </div>
   </router-link>
@@ -37,3 +40,36 @@ export default class SinglePrint extends Vue {
   }
 }
 </script>
+
+<style scoped>
+.card-body {
+  padding: 0;
+  /* float: left; */
+}
+
+.single-card {
+  text-align: left;
+  border: 1px solid #dbdbdb;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  padding: 10px;
+}
+
+.single-card-grey {
+  color: #999;
+}
+
+.single-card:hover {
+  box-shadow: 0 0px 2.7px rgba(0, 0, 0, 0.02), 0 0px 6.4px rgba(0, 0, 0, 0.028),
+    0 0px 12px rgba(0, 0, 0, 0.035), 0 0px 21.4px rgba(0, 0, 0, 0.042),
+    0 0px 40.1px rgba(0, 0, 0, 0.05), 0 0px 96px rgba(0, 0, 0, 0.07);
+}
+
+.single-card-black {
+  color: #000;
+}
+
+.single-card-dark-grey {
+  color: #666;
+}
+</style>
