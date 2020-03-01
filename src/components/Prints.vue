@@ -12,7 +12,7 @@ There are two reasons why we want to start our HTTP calls in the created method.
         <span class="sr-only">Loading...</span>
       </div>
     </div>
-    <div class="prints" :class="allPrints()">
+    <div class="prints">
       <SinglePrint v-for="(item, index) in items" :key="index" :item="item" />
     </div>
   </section>
@@ -34,7 +34,7 @@ export default class Prints extends Vue {
   page: number = 1 // Harvard Art's data shows 1 page having 10 records
   isLoading: boolean = true
 
-  async allPrints() {
+  async created() {
     await this.$http
       .get(
         `https://api.harvardartmuseums.org/object?&apikey=${apikey}&worktype=print&culture=Japanese&hasimage=1&sort=title&sortorder=asc`
