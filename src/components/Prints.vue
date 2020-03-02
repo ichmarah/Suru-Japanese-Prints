@@ -8,7 +8,7 @@ There are two reasons why we want to start our HTTP calls in the created method.
 -->
 
 <template>
-  <section :class="getPrints()" class="container">
+  <section class="container">
     <div class="d-flex justify-content-center">
       <div :class="isLoading ? 'spinner-border' : ''" role="status">
         <span class="sr-only">Loading...</span>
@@ -16,65 +16,117 @@ There are two reasons why we want to start our HTTP calls in the created method.
     </div>
     <div class="prints">
       <div class="form-group col-md-4">
-        <label for="inputState">Sort by:</label>
-        <select
-          id="inputState"
-          class="form-control"
-          @change="sortPrintsBy(value)"
-          v-model="value"
+        <p>Sort by:</p>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          @click="sortPrintsBy('titleAZ')"
         >
-          <option selected>Choose...</option>
-          <option value="title">Title: A - Z</option>
-          <option>Title: Z - A</option>
-          <option>Artist: A - Z</option>
-          <option>Artist: Z - A</option>
-          <option>Date: Ascending</option>
-          <option>Date: descending</option>
-        </select>
+          Title A - Z
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          @click="sortPrintsBy('titleZA')"
+        >
+          Title Z - A
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          @click="sortPrintsBy('artistAZ')"
+        >
+          Artist A - Z
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          @click="sortPrintsBy('artistZA')"
+        >
+          Artist Z - A
+        </button>
       </div>
       <SinglePrint v-for="(item, index) in items" :key="index" :item="item" />
     </div>
+    <Pagination :pageNumbers="pageNumbers" />
   </section>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import Component from 'vue-class-component'
+import { Component, Vue } from 'vue-property-decorator'
 import { apikey } from '../keys'
 // eslint-disable-next-line no-unused-vars
 import { AxiosResponse } from 'axios'
 import SinglePrint from './SinglePrint.vue'
+import Pagination from './Pagination.vue'
 
 @Component({
-  components: { SinglePrint }
+  components: { SinglePrint, Pagination }
 })
 export default class Prints extends Vue {
   items: Array<any> = []
-  page: number = 1 // Harvard Art's data shows 1 page having 10 records
+  page: number = 0 // Harvard Art's data shows 1 page having 10 records
+  totalPages: number = 0
   isLoading: boolean = true
+  pageNumbers: Array<Number> = []
 
-  getPrints() {
+  getPageNumbers(page: number, totalPages: number): void {
+    for (let i = 1; i <= Math.ceil(totalPages / page); i++) {
+      this.pageNumbers.push(i)
+    }
+    console.log(this.pageNumbers)
+  }
+
+  sortPrintsBy(sorting: any): any {
+    this.items.sort((a, b): number => {
+      let sortA: any
+      let sortB: any
+      switch (sorting) {
+        case 'titleAZ':
+          sortA = a.title.toUpperCase()
+          sortB = b.title.toUpperCase()
+          break
+        case 'titleZA':
+          sortA = b.title.toUpperCase()
+          sortB = a.title.toUpperCase()
+          break
+        case 'artistAZ':
+          sortA = a.people[0].name.toUpperCase()
+          sortB = b.people[0].name.toUpperCase()
+          break
+        case 'artistZA':
+          sortA = b.people[0].name.toUpperCase()
+          sortB = a.people[0].name.toUpperCase()
+          break
+        default:
+          break
+      }
+      if (sortA < sortB) {
+        return -1
+      } else if (sortA > sortB) {
+        return 1
+      } else {
+        return 0
+      }
+    })
+  }
+
+  //The data sorted only when using created(). If not used but with another function name, the data will load but refresh again when sorted.
+  async mounted() {
     // created() is used for fetching data after component is created
-    this.$http
+    await this.$http
       .get(
         `https://api.harvardartmuseums.org/object?&apikey=${apikey}&worktype=print&culture=Japanese&hasimage=1&sort=title&sortorder=desc`
       )
       .then((response: AxiosResponse) => {
-        ;(this.isLoading = true), // eslint(prettier/prettier) says to put ';' but unclear why
-          (this.items = response.data.records),
-          (this.page = response.data.info.pages),
+        ;(this.items = response.data.records),
+          (this.page = response.data.info.page),
+          (this.totalPages = response.data.info.pages),
           (this.isLoading = false)
         // console.log('Items: ', this.items, 'isLoading: ', this.isLoading, this.item.people.name)
         return this.items, this.isLoading
       })
       .catch(error => console.log(error))
-  }
-  sortPrintsBy(value: any): any {
-    this.items.sort((a: any, b: any): number => {
-      if (a[value] < b[value]) {
-        return -1
-      } 
-    })
   }
 }
 </script>

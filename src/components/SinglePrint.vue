@@ -20,6 +20,7 @@ However, since we need to inlcude 'params' in the v-bind:to for the path of this
         <p class="card-text single-card-grey">{{ item.objectnumber }}</p>
         <h6 class="card-text single-card-black">{{ item.people[0].name }}</h6>
         <p class="card-title single-card-dark-grey">{{ item.title }}</p>
+        <p class="card-title single-card-dark-grey">{{ item.dated }}</p>
       </div>
     </div>
   </router-link>
