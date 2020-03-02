@@ -8,13 +8,30 @@ There are two reasons why we want to start our HTTP calls in the created method.
 -->
 
 <template>
-  <section class="container">
+  <section :class="getPrints()" class="container">
     <div class="d-flex justify-content-center">
       <div :class="isLoading ? 'spinner-border' : ''" role="status">
         <span class="sr-only">Loading...</span>
       </div>
     </div>
     <div class="prints">
+      <div class="form-group col-md-4">
+        <label for="inputState">Sort by:</label>
+        <select
+          id="inputState"
+          class="form-control"
+          @change="sortPrintsBy(value)"
+          v-model="value"
+        >
+          <option selected>Choose...</option>
+          <option value="title">Title: A - Z</option>
+          <option>Title: Z - A</option>
+          <option>Artist: A - Z</option>
+          <option>Artist: Z - A</option>
+          <option>Date: Ascending</option>
+          <option>Date: descending</option>
+        </select>
+      </div>
       <SinglePrint v-for="(item, index) in items" :key="index" :item="item" />
     </div>
   </section>
@@ -36,25 +53,29 @@ export default class Prints extends Vue {
   page: number = 1 // Harvard Art's data shows 1 page having 10 records
   isLoading: boolean = true
 
-  async created() {
-    await this.$http
+  getPrints() {
+    // created() is used for fetching data after component is created
+    this.$http
       .get(
-        `https://api.harvardartmuseums.org/object?&apikey=${apikey}&worktype=print&culture=Japanese&hasimage=1&sort=title&sortorder=asc`
+        `https://api.harvardartmuseums.org/object?&apikey=${apikey}&worktype=print&culture=Japanese&hasimage=1&sort=title&sortorder=desc`
       )
       .then((response: AxiosResponse) => {
-        (this.isLoading = true),
-        (this.items = response.data.records),
-        (this.page = response.data.info.pages),
-        (this.isLoading = false)
+        ;(this.isLoading = true), // eslint(prettier/prettier) says to put ';' but unclear why
+          (this.items = response.data.records),
+          (this.page = response.data.info.pages),
+          (this.isLoading = false)
         // console.log('Items: ', this.items, 'isLoading: ', this.isLoading, this.item.people.name)
         return this.items, this.isLoading
       })
       .catch(error => console.log(error))
   }
-
-  // created() {
-
-  // }
+  sortPrintsBy(value: any): any {
+    this.items.sort((a: any, b: any): number => {
+      if (a[value] < b[value]) {
+        return -1
+      } 
+    })
+  }
 }
 </script>
 
