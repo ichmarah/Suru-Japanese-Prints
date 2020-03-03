@@ -48,7 +48,12 @@ There are two reasons why we want to start our HTTP calls in the created method.
       </div>
       <SinglePrint v-for="(item, index) in items" :key="index" :item="item" />
     </div>
-    <Pagination :pageNumbers="pageNumbers" />
+    <Pagination
+      :currentPage="currentPage"
+      :totalPages="totalPages"
+      :next="next"
+      :previous="previous"
+    />
   </section>
 </template>
 
@@ -65,17 +70,15 @@ import Pagination from './Pagination.vue'
 })
 export default class Prints extends Vue {
   items: Array<any> = []
-  page: number = 0 // Harvard Art's data shows 1 page having 10 records
+  currentPage: number = 0 // Harvard Art's data shows 1 page having 10 records
   totalPages: number = 0
+  // totalRecordsPerQuery: number = 0
+  // totalRecords: number = 0
   isLoading: boolean = true
-  pageNumbers: Array<Number> = []
+  next: string = ''
+  previous: string = ''
 
-  getPageNumbers(page: number, totalPages: number): void {
-    for (let i = 1; i <= Math.ceil(totalPages / page); i++) {
-      this.pageNumbers.push(i)
-    }
-    console.log(this.pageNumbers)
-  }
+  // pageNumbers: Array<Number> = []
 
   sortPrintsBy(sorting: any): any {
     this.items.sort((a, b): number => {
@@ -119,12 +122,20 @@ export default class Prints extends Vue {
         `https://api.harvardartmuseums.org/object?&apikey=${apikey}&worktype=print&culture=Japanese&hasimage=1&sort=title&sortorder=desc`
       )
       .then((response: AxiosResponse) => {
-        ;(this.items = response.data.records),
-          (this.page = response.data.info.page),
-          (this.totalPages = response.data.info.pages),
-          (this.isLoading = false)
-        // console.log('Items: ', this.items, 'isLoading: ', this.isLoading, this.item.people.name)
-        return this.items, this.isLoading
+        (this.items = response.data.records),
+        (this.currentPage = response.data.info.page),
+        (this.totalPages = response.data.info.pages),
+        (this.isLoading = false),
+        (this.next = response.data.info.next),
+        (this.previous = response.data.info.prev)
+        return (
+          this.items,
+          this.isLoading,
+          this.currentPage,
+          this.totalPages,
+          this.next,
+          this.previous
+        )
       })
       .catch(error => console.log(error))
   }
