@@ -12,6 +12,9 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import Paginate from 'vuejs-paginate'
+
+Vue.component('paginate', Paginate)
 
 Vue.config.productionTip = false
 

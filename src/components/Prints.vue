@@ -48,12 +48,32 @@ There are two reasons why we want to start our HTTP calls in the created method.
       </div>
       <SinglePrint v-for="(item, index) in items" :key="index" :item="item" />
     </div>
-    <Pagination
-      :currentPage="currentPage"
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        <paginate
+          :page-count="totalPages"
+          :page-range="3"
+          :margin-pages="2"
+          :click-handler="clickCallback"
+          :prev-text="'Previous'"
+          :next-text="'Next'"
+          :container-class="'pagination'"
+          :page-class="'page-item'"
+        >
+        </paginate>
+      </ul>
+    </nav>
+
+    
+    <!-- <Pagination
+      :items="items"
       :totalPages="totalPages"
-      :next="next"
-      :previous="previous"
-    />
+      :getNext="this.getNext"
+      :getPrevious="this.getPrevious"
+      :currentPage="currentPage"
+      :totalRecordsPerQuery="totalRecordsPerQuery"
+      @created="getPrints()"
+    /> -->
   </section>
 </template>
 
@@ -63,22 +83,19 @@ import { apikey } from '../keys'
 // eslint-disable-next-line no-unused-vars
 import { AxiosResponse } from 'axios'
 import SinglePrint from './SinglePrint.vue'
-import Pagination from './Pagination.vue'
 
 @Component({
-  components: { SinglePrint, Pagination }
+  components: { SinglePrint }
 })
 export default class Prints extends Vue {
   items: Array<any> = []
   currentPage: number = 0 // Harvard Art's data shows 1 page having 10 records
-  totalPages: number = 0
-  // totalRecordsPerQuery: number = 0
-  // totalRecords: number = 0
+  totalPages: any = 0
+  totalRecordsPerQuery: number = 0
   isLoading: boolean = true
   next: string = ''
   previous: string = ''
-
-  // pageNumbers: Array<Number> = []
+  query: string = `https://api.harvardartmuseums.org/object?&apikey=${apikey}&worktype=print&culture=Japanese&hasimage=1&sort=title&sortorder=desc`
 
   sortPrintsBy(sorting: any): any {
     this.items.sort((a, b): number => {
@@ -115,29 +132,33 @@ export default class Prints extends Vue {
   }
 
   //The data sorted only when using created(). If not used but with another function name, the data will load but refresh again when sorted.
-  async mounted() {
+  async getPrints(query: string): Promise<void> {
     // created() is used for fetching data after component is created
     await this.$http
-      .get(
-        `https://api.harvardartmuseums.org/object?&apikey=${apikey}&worktype=print&culture=Japanese&hasimage=1&sort=title&sortorder=desc`
-      )
+      .get(query)
       .then((response: AxiosResponse) => {
-        (this.items = response.data.records),
-        (this.currentPage = response.data.info.page),
-        (this.totalPages = response.data.info.pages),
-        (this.isLoading = false),
-        (this.next = response.data.info.next),
-        (this.previous = response.data.info.prev)
-        return (
-          this.items,
-          this.isLoading,
-          this.currentPage,
-          this.totalPages,
-          this.next,
-          this.previous
-        )
+        ;(this.items = response.data.records),
+          (this.currentPage = response.data.info.page),
+          (this.totalPages = response.data.info.pages),
+          (this.totalRecordsPerQuery = response.data.info.totalrecordsperquery),
+          (this.isLoading = false),
+          (this.next = response.data.info.next),
+          (this.previous = response.data.info.prev)
       })
       .catch(error => console.log(error))
+  }
+
+  getNext(): any {
+    // this.next = nextPageQuery
+    this.getPrints(this.next)
+  }
+
+  getPrevious(): any {
+    this.getPrints(this.previous)
+  }
+
+  created() {
+    this.getPrints(this.query)
   }
 }
 </script>
