@@ -9,11 +9,7 @@ There are two reasons why we want to start our HTTP calls in the created method.
 
 <template>
   <section class="container">
-    <div class="d-flex justify-content-center">
-      <div :class="isLoading ? 'spinner-border' : ''" role="status">
-        <span class="sr-only">Loading...</span>
-      </div>
-    </div>
+    <Loader :isLoading="isLoading" />
     <div class="prints">
       <div class="form-group col-md-4">
         <p>Sort by:</p>
@@ -90,9 +86,10 @@ import { apikey } from '../keys'
 // eslint-disable-next-line no-unused-vars
 import { AxiosResponse } from 'axios'
 import SinglePrint from './SinglePrint.vue'
+import Loader from './Loader.vue'
 
 @Component({
-  components: { SinglePrint }
+  components: { SinglePrint, Loader }
 })
 export default class Prints extends Vue {
   items: Array<any> = []
