@@ -48,23 +48,30 @@ There are two reasons why we want to start our HTTP calls in the created method.
       </div>
       <SinglePrint v-for="(item, index) in items" :key="index" :item="item" />
     </div>
-    <nav aria-label="Page navigation example">
-      <ul class="pagination justify-content-center">
-        <paginate
-          :page-count="totalPages"
-          :page-range="3"
-          :margin-pages="2"
-          :click-handler="clickCallback"
-          :prev-text="'Previous'"
-          :next-text="'Next'"
-          :container-class="'pagination'"
-          :page-class="'page-item'"
-        >
-        </paginate>
-      </ul>
-    </nav>
+    <paginate
+      aria-label="Page navigation example"
+      :v-model="currentPage"
+      :page-count="totalPages"
+      :page-range="3"
+      :margin-pages="2"
+      :click-handler="clickHandler"
+      :prev-text="'Previous'"
+      :next-text="'Next'"
+      :container-class="'pagination'"
+      :page-class="'page-item'"
+    >
+    </paginate>
 
-    
+    <!-- <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+      </ul>
+    </nav> -->
+
     <!-- <Pagination
       :items="items"
       :totalPages="totalPages"
@@ -95,7 +102,7 @@ export default class Prints extends Vue {
   isLoading: boolean = true
   next: string = ''
   previous: string = ''
-  query: string = `https://api.harvardartmuseums.org/object?&apikey=${apikey}&worktype=print&culture=Japanese&hasimage=1&sort=title&sortorder=desc`
+  query: string = `https://api.harvardartmuseums.org/object?&apikey=${apikey}&worktype=print&culture=Japanese&hasimage=1&sort=title`
 
   sortPrintsBy(sorting: any): any {
     this.items.sort((a, b): number => {
@@ -155,6 +162,13 @@ export default class Prints extends Vue {
 
   getPrevious(): any {
     this.getPrints(this.previous)
+  }
+
+  clickHandler(pageNumber: number): any {
+    this.currentPage = pageNumber
+    if (pageNumber) {
+      this.getPrints(`${this.query}&page=${pageNumber}`)
+    }
   }
 
   created() {
