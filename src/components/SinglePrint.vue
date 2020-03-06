@@ -5,7 +5,7 @@ However, since we need to inlcude 'params' in the v-bind:to for the path of this
 -->
 <template>
   <router-link
-    :to="{ name: 'DetailPage', params: { objectId: item.objectid } }"
+    :to="{ name: 'DetailPage', params: { objectid: item.objectid } }"
   >
     <div class="card-body">
       <div class="single-card">

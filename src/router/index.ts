@@ -15,9 +15,10 @@ const routes = [
     component: Home
   },
   {
-    path: '/object/objectid', // This path is according to Harvard Art's API request for a resource: GET /object/ "OBJECT_ID will get the full record of the specified object."
+    path: '/object/:objectid', // This path is according to Harvard Art's API request for a resource: GET /object/ "OBJECT_ID will get the full record of the specified object."
     name: 'DetailPage',
-    component: DetailPage
+    component: DetailPage,
+    props: true
   },
   {
     path: '/categories',
