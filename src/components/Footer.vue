@@ -1,7 +1,7 @@
 <template>
   <footer class="footer mt-auto py-3 border-top">
     <div class="row sitemap">
-      <div class="col-6 col-md">
+      <div class="col-6 col-md sitemap-col">
         <ul class="list-unstyled text-small">
           <h5>Menu</h5>
           <li>
@@ -20,7 +20,7 @@
           </li>
         </ul>
       </div>
-      <div class="col-6 col-md">
+      <div class="col-6 col-md sitemap-col">
         <h5>Connect</h5>
         <ul class="list-unstyled text-small">
           <li>
@@ -71,5 +71,10 @@ export default class Footer extends Vue {
 .sitemap {
   text-align: left;
   margin-left: 15px;
+}
+
+.sitemap-col {
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>

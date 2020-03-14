@@ -5,7 +5,7 @@ However, since we need to inlcude 'params' in the v-bind:to for the path of this
 -->
 <template>
   <router-link
-    :to="{ name: 'DetailPage', params: { objectid: item.objectid } }"
+    :to="{ name: 'DetailPage', params: { objectid: (number = item.objectid) } }"
   >
     <div class="card-body">
       <div class="single-card">
@@ -18,9 +18,25 @@ However, since we need to inlcude 'params' in the v-bind:to for the path of this
         />
         <p v-else><i>No image available at the moment</i></p>
         <p class="card-text single-card-grey">{{ item.objectnumber }}</p>
-        <h6 class="card-text single-card-black">{{ item.people[0].name }}</h6>
+        <!-- Some items do not have name included as data -->
+        <h6 v-if="!item.people" class="card-text single-card-black">
+          [Artist name unknown]
+        </h6>
+        <p v-else class="card-text single-card-black">
+          {{ item.people[0].name }}
+        </p>
+
         <p class="card-title single-card-dark-grey">{{ item.title }}</p>
-        <p class="card-title single-card-dark-grey">{{ item.dated }}</p>
+        <!-- Some items have dated: null as date -->
+        <p v-if="item.dated" class="card-title single-card-dark-grey">
+          {{ item.dated }}
+        </p>
+        <p
+          v-show="!item.dated || item.date === null"
+          class="card-title single-card-dark-grey"
+        >
+          [Date unknown]
+        </p>
       </div>
     </div>
   </router-link>
@@ -35,10 +51,10 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 })
 export default class SinglePrint extends Vue {
   @Prop({ type: Object, required: true }) item!: Object
-  constructor() {
-    super()
-    // console.log(this.item)
-  }
+  // constructor() {
+  //   super()
+  //   // console.log(this.item)
+  // }
 }
 </script>
 

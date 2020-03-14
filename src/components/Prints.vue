@@ -8,7 +8,7 @@ There are two reasons why we want to start our HTTP calls in the created method.
 -->
 
 <template>
-  <section class="container">
+  <section>
     <Loader :isLoading="isLoading" />
     <div class="prints">
       <div class="form-group col-md-4">
@@ -99,7 +99,7 @@ export default class Prints extends Vue {
   isLoading: boolean = true
   next: string = ''
   previous: string = ''
-  query: string = `https://api.harvardartmuseums.org/object?&apikey=${apikey}&worktype=print&culture=Japanese&hasimage=1&sort=title`
+  query: string = `https://api.harvardartmuseums.org/object?&apikey=${apikey}&worktype=print&culture=Japanese&hasimage=1&sort=title&sortorder=desc`
 
   sortPrintsBy(sorting: any): any {
     this.items.sort((a, b): number => {

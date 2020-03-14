@@ -26,22 +26,20 @@
           show ? 'navbar-collapse collapse show' : 'navbar-collapse collapse'
         "
       >
-        <ul class="navbar-nav">
-          <li class="nav-item active">
-            <a href="/" class="nav-link"
-              >Home <span class="sr-only">(current)</span></a
-            >
-          </li>
-          <li class="nav-item">
-            <a href="/categories" class="nav-link">Categories</a>
-          </li>
-          <li class="nav-item">
-            <a href="/random" class="nav-link">Random</a>
-          </li>
-          <li class="nav-item">
-            <a href="/About" class="nav-link">About</a>
-          </li>
-        </ul>
+        <div class="navbar-nav">
+          <router-link class="nav-link" :to="{ name: 'Home' }"
+            >Home<span class="sr-only">(current)</span></router-link
+          >
+          <router-link class="nav-link" :to="{ name: 'Categories' }"
+            >Categories</router-link
+          >
+          <router-link class="nav-link" :to="{ name: 'Random' }"
+            >Random</router-link
+          >
+          <router-link class="nav-link" :to="{ name: 'About' }"
+            >About</router-link
+          >
+        </div>
       </div>
     </nav>
   </header>
