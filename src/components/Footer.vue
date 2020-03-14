@@ -2,23 +2,31 @@
   <footer class="footer mt-auto py-3 border-top">
     <div class="row sitemap">
       <div class="col-6 col-md sitemap-col">
-        <ul class="list-unstyled text-small">
+        <div class="list-unstyled text-small">
           <h5>Menu</h5>
-          <li>
-            <a class="text-muted" href="/"
-              >Home <span class="sr-only">(current)</span></a
+          <div class="navbar-nav">
+            <router-link
+              class="nav-link text-muted footer-nav"
+              :to="{ name: 'Home' }"
+              >Home<span class="sr-only">(current)</span></router-link
             >
-          </li>
-          <li>
-            <a class="text-muted" href="/categories">Categories</a>
-          </li>
-          <li>
-            <a class="text-muted" href="/random">Random</a>
-          </li>
-          <li>
-            <a class="text-muted" href="/about">About</a>
-          </li>
-        </ul>
+            <router-link
+              class="nav-link text-muted footer-nav"
+              :to="{ name: 'Categories' }"
+              >Categories</router-link
+            >
+            <router-link
+              class="nav-link text-muted footer-nav"
+              :to="{ name: 'Random' }"
+              >Random</router-link
+            >
+            <router-link
+              class="nav-link text-muted footer-nav"
+              :to="{ name: 'About' }"
+              >About</router-link
+            >
+          </div>
+        </div>
       </div>
       <div class="col-6 col-md sitemap-col">
         <h5>Connect</h5>
@@ -71,10 +79,16 @@ export default class Footer extends Vue {
 .sitemap {
   text-align: left;
   margin-left: 15px;
+  padding-bottom: 1px;;
 }
 
 .sitemap-col {
   margin-left: auto;
   margin-right: auto;
+}
+
+.footer-nav {
+  padding-bottom: 0;
+  padding-top: 0;
 }
 </style>

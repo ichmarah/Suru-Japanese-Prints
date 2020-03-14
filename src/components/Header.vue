@@ -6,7 +6,7 @@
 <template>
   <header class="page-header">
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-      <a class="navbar-brand" href="/">Suru</a>
+      <router-link to="/" class="navbar-brand">Suru</router-link>
       <button
         class="navbar-toggler"
         type="button"

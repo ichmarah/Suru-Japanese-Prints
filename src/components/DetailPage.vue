@@ -1,7 +1,7 @@
 <template>
   <div>
     <section>
-      <Loader :isLoading="isLoading" />
+      <BaseLoader :isLoading="isLoading" />
       <div class="container">
         <figure>
           <img
@@ -49,17 +49,15 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
-import Loader from './Loader.vue'
 import { apikey } from '../keys'
 // eslint-disable-next-line no-unused-vars
 import { AxiosResponse } from 'axios'
 
 @Component({
-  name: 'DetailPage',
-  components: { Loader }
+  name: 'DetailPage'
 })
 export default class DetailPage extends Vue {
-  @Prop({ type: Number, required: true }) objectid!: number
+  @Prop({ type: Number, required: true }) objectid!: number // is passed down as prop because we set it as props: true in router.ts as well.
   isLoading: boolean = true
   object: Array<any> = []
   relatedCount: number = 0

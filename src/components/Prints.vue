@@ -9,7 +9,7 @@ There are two reasons why we want to start our HTTP calls in the created method.
 
 <template>
   <section>
-    <Loader :isLoading="isLoading" />
+    <BaseLoader :isLoading="isLoading" />
     <div class="prints">
       <div class="form-group col-md-4">
         <p>Sort by:</p>
@@ -86,10 +86,10 @@ import { apikey } from '../keys'
 // eslint-disable-next-line no-unused-vars
 import { AxiosResponse } from 'axios'
 import SinglePrint from './SinglePrint.vue'
-import Loader from './Loader.vue'
+// import Loader from './Loader.vue' // Since we put Loader component as global, we do not have to import it. We just need to add the component in <template>
 
 @Component({
-  components: { SinglePrint, Loader }
+  components: { SinglePrint }
 })
 export default class Prints extends Vue {
   items: Array<any> = []

@@ -18,7 +18,7 @@ const routes = [
     path: '/object/:objectid', // This path is according to Harvard Art's API request for a resource: GET /object/ "OBJECT_ID will get the full record of the specified object."
     name: 'DetailPage',
     component: DetailPage,
-    props: true
+    props: true // Passes $route.params as prop in component. Component needs to accept this as props!
   },
   {
     path: '/categories',
@@ -41,6 +41,11 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+  // Source: https://www.vuemastery.com/courses/real-world-vue-js/dynamic-routing-history-mode
+  // When deploying. Because Vue loads only index.html, even if a component is not loaded or does not exist. By implementing a catch-all route, you can show a 404 Page. You need to create that page.
+  // routes: [
+  //   { path: '*', component: NotFoundComponent}
+  // ]
 })
 
 export default router
