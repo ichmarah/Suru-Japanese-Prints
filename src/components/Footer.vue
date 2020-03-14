@@ -79,7 +79,7 @@ export default class Footer extends Vue {
 .sitemap {
   text-align: left;
   margin-left: 15px;
-  padding-bottom: 1px;;
+  padding-bottom: 1px;
 }
 
 .sitemap-col {

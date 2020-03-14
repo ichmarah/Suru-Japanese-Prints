@@ -137,6 +137,7 @@ export default class Prints extends Vue {
 
   //The data sorted only when using created(). If not used but with another function name, the data will load but refresh again when sorted.
   async getPrints(query: string): Promise<void> {
+    this.isLoading = true
     // created() is used for fetching data after component is created
     await this.$http
       .get(query)

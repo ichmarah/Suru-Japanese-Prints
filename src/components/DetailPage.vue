@@ -36,7 +36,7 @@
       <div v-if="!object.related"></div>
       <div v-else class="col border-top">
         <div class="card" style="width: 18rem;">
-          <img src="" class="card-img-top" alt="...">
+          <img src="" class="card-img-top" alt="..." />
           <div class="card-body">
             <h5 class="card-title">Card title</h5>
             <p class="card-text">{{ this.relatedPrintsLinked }}</p>
@@ -67,6 +67,7 @@ export default class DetailPage extends Vue {
   query: string = `https://api.harvardartmuseums.org/object/${this.objectid}?&apikey=${apikey}`
 
   async getDetailsPrint(query: string): Promise<void> {
+    this.isLoading = true
     await this.$http
       .get(query)
       .then((response: AxiosResponse) => {

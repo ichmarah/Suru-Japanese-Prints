@@ -5,6 +5,7 @@ import Categories from '../views/Categories.vue'
 import Random from '../views/Random.vue'
 import About from '../views/About.vue'
 import DetailPage from '../components/DetailPage.vue'
+import NotFound from '../views/NotFound.vue'
 
 Vue.use(VueRouter)
 
@@ -34,6 +35,15 @@ const routes = [
     path: '/about',
     name: 'About',
     component: About
+  },
+  {
+    path: '/404',
+    name: '404',
+    component: NotFound
+  },
+  {
+    path: '*',
+    redirect: { name: '404' }
   }
 ]
 
