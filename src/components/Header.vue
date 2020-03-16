@@ -1,7 +1,7 @@
 <!-- 
   Since Bootstrap has the option of adding "show" to the collapsable menu, I can bind a class to that with a ternary operator where show is true or false.
   However, true or false in show need to only change when the menu button is clicked. 
-  Meaning, the button needs to get a @click refering to a function (in this case onClick). This functions changes the value of show to true or false, depending on the initial value of show.
+  Meaning, the button needs to get an @click refering to a function (in this case onClick). This functions changes the value of show to true or false, depending on the initial value of show.
 -->
 <template>
   <header class="page-header">
@@ -26,9 +26,9 @@
           show ? 'navbar-collapse collapse show' : 'navbar-collapse collapse'
         "
       >
-        <div class="navbar-nav">
+        <div class="navbar-nav" @click="onClick">
           <router-link class="nav-link" :to="{ name: 'Home' }"
-            >Home<span class="sr-only">(current)</span></router-link
+            >Home</router-link
           >
           <router-link class="nav-link" :to="{ name: 'Categories' }"
             >Categories</router-link
