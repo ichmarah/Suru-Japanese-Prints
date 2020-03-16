@@ -42,7 +42,11 @@ There are two reasons why we want to start our HTTP calls in the created method.
           Artist Z - A
         </button>
       </div>
-      <SinglePrint v-for="(item, index) in items" :key="index" :item="item" />
+      <BaseSinglePrint
+        v-for="(item, index) in items"
+        :key="index"
+        :item="item"
+      />
     </div>
     <paginate
       aria-label="Page navigation example"
@@ -57,26 +61,6 @@ There are two reasons why we want to start our HTTP calls in the created method.
       :page-class="'page-item'"
     >
     </paginate>
-
-    <!-- <nav aria-label="Page navigation example">
-      <ul class="pagination">
-        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-      </ul>
-    </nav> -->
-
-    <!-- <Pagination
-      :items="items"
-      :totalPages="totalPages"
-      :getNext="this.getNext"
-      :getPrevious="this.getPrevious"
-      :currentPage="currentPage"
-      :totalRecordsPerQuery="totalRecordsPerQuery"
-      @created="getPrints()"
-    /> -->
   </section>
 </template>
 
@@ -85,12 +69,10 @@ import { Component, Vue } from 'vue-property-decorator'
 import { apikey } from '../keys'
 // eslint-disable-next-line no-unused-vars
 import { AxiosResponse } from 'axios'
-import SinglePrint from './SinglePrint.vue'
+// import BaseSinglePrint from './BaseSinglePrint.vue'
 // import Loader from './Loader.vue' // Since we put Loader component as global, we do not have to import it. We just need to add the component in <template>
 
-@Component({
-  components: { SinglePrint }
-})
+@Component({})
 export default class Prints extends Vue {
   items: Array<any> = []
   currentPage: number = 0 // Harvard Art's data shows 1 page having 10 records
@@ -174,9 +156,3 @@ export default class Prints extends Vue {
   }
 }
 </script>
-
-<style scoped>
-/* .prints {
-  position: relative;
-} */
-</style>

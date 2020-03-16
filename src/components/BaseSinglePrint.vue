@@ -47,9 +47,9 @@ However, since we need to inlcude 'params' in the v-bind:to for the path of this
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component({
-  name: 'SinglePrint'
+  name: 'BaseSinglePrint'
 })
-export default class SinglePrint extends Vue {
+export default class BaseSinglePrint extends Vue {
   @Prop({ type: Object, required: true }) item!: Object
   // constructor() {
   //   super()
