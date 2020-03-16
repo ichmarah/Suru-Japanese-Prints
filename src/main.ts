@@ -14,9 +14,11 @@ import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Paginate from 'vuejs-paginate'
 import BaseLoader from '@/components/BaseLoader.vue'
+import BaseSinglePrint from '@/components/BaseSinglePrint.vue'
 
 Vue.component('paginate', Paginate)
 Vue.component('BaseLoader', BaseLoader)
+Vue.component('BaseSinglePrint', BaseSinglePrint)
 
 Vue.config.productionTip = false
 
