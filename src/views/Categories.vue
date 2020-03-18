@@ -1,6 +1,10 @@
 <template>
   <section>
-    <h1>20th Century prints</h1>
+    <h3 class="top-heading">20th Century prints</h3>
+    <p>
+      In this category, you can go through prints that are dated in the
+      twentieth century. Click on each print to get more details.
+    </p>
     <BaseLoader :isLoading="isLoading" />
     <div class="prints">
       <BaseSinglePrint

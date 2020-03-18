@@ -1,8 +1,10 @@
 <template>
   <section>
-    <h1>Random</h1>
+    <h3 class="top-heading">Random</h3>
     <p>Click the button to show a random print!</p>
-    <button @click="getRandomPrint">Random</button>
+    <button class="btn btn-secondary btn-circle btn-xl" @click="getRandomPrint">
+      Click me!
+    </button>
     <BaseLoader :isLoading="isLoading" />
     <BaseSinglePrint v-for="(item, index) in items" :key="index" :item="item" />
   </section>
@@ -38,4 +40,22 @@ export default class Random extends Vue {
 }
 </script>
 
-<style scoped></style>
+<style lang="css" scoped>
+.btn-circle.btn-xl {
+  width: 70px;
+  height: 70px;
+  padding: 10px 16px;
+  border-radius: 35px;
+  text-align: center;
+}
+
+.btn-circle.btn-xl:hover {
+  box-shadow: 0 0px 2.7px rgba(0, 0, 0, 0.02), 0 0px 6.4px rgba(0, 0, 0, 0.028),
+    0 0px 12px rgba(0, 0, 0, 0.035), 0 0px 21.4px rgba(0, 0, 0, 0.042),
+    0 0px 40.1px rgba(0, 0, 0, 0.05), 0 0px 96px rgba(0, 0, 0, 0.07);
+}
+
+.btn-secondary {
+  font-size: 16px !important;
+}
+</style>

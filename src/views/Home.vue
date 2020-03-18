@@ -1,5 +1,8 @@
 <template>
-  <Prints />
+  <section>
+    <h3 class="top-heading">Japanese Prints</h3>
+    <Prints />
+  </section>
 </template>
 
 <script lang="ts">
