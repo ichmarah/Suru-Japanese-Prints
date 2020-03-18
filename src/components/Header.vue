@@ -59,13 +59,15 @@ export default class Header extends Vue {
 }
 </script>
 
-<style scoped>
+<style lang="css" scoped>
 .page-header {
   padding: 15px 25px 0;
 }
 
 .navbar-brand {
   padding-left: 20px;
+  font-size: 30px;
+  font-weight: bold;
 }
 
 .navbar-nav {

@@ -63,17 +63,21 @@ export default class Footer extends Vue {
 }
 </script>
 
-<style scoped>
+<style lang="css" scoped>
 .footer {
-  bottom: 0;
   left: 0;
   right: 0;
   float: left;
   width: 100%;
+  position: absolute;
+  bottom: 0;
+  height: 2.5rem;
 }
 
 #footer-credit {
   font-size: 12px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .sitemap {
