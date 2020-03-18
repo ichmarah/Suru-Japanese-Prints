@@ -2,7 +2,7 @@
 # Suru
 
 ## About
-Suru is a website I created as a take-home test for a taineeship position at [DTT](https://www.d-tt.nl/). The public API was retrieved from the [Harvard Art Museum](https://www.harvardartmuseums.org/).   
+Suru is a website I created as a take-home test for a traineeship position at [DTT](https://www.d-tt.nl/). The public API was retrieved from the [Harvard Art Museum](https://www.harvardartmuseums.org/).   
 
 ## Author
 [Ichmarah Kock](https://www.linkedin.com/in/ichmarah)
