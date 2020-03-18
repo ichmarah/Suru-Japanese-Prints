@@ -15,10 +15,12 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import Paginate from 'vuejs-paginate'
 import BaseLoader from '@/components/BaseLoader.vue'
 import BaseSinglePrint from '@/components/BaseSinglePrint.vue'
+import BaseBackButton from '@/components/BaseBackButton.vue'
 
 Vue.component('paginate', Paginate)
 Vue.component('BaseLoader', BaseLoader)
 Vue.component('BaseSinglePrint', BaseSinglePrint)
+Vue.component('BaseBackButton', BaseBackButton)
 
 Vue.config.productionTip = false
 
