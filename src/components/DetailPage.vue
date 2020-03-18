@@ -1,6 +1,7 @@
 <template>
   <div>
     <section>
+      <BaseBackButton />
       <BaseLoader :isLoading="isLoading" />
       <div class="container">
         <figure>
@@ -26,6 +27,15 @@
           <h4>Period</h4>
           <p v-if="!object.period">Period is unknown</p>
           <p v-else>{{ object.period }}</p>
+          <h4>Work type</h4>
+          <p v-if="!object.worktypes[0].worktype">Work type is unknown</p>
+          <p v-else>{{ object.worktypes[0].worktype }}</p>
+          <h4>Dimensions</h4>
+          <p v-if="!object.dimensions">Dimensions are unknown</p>
+          <p v-else>{{ object.dimensions }}</p>
+          <h4>Inscriptions and marks</h4>
+          <p v-if="!object.signed">No inscriptions or marks available</p>
+          <p v-else>{{ object.signed }}</p>
         </div>
       </div>
     </section>
@@ -98,7 +108,7 @@ export default class DetailPage extends Vue {
 }
 </script>
 
-<style scoped>
+<style lang="css" scoped>
 .image-detail {
   max-width: 100%;
 }

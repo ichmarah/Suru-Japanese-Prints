@@ -58,10 +58,9 @@ export default class BaseSinglePrint extends Vue {
 }
 </script>
 
-<style scoped>
+<style lang="css" scoped>
 .card-body {
-  padding: 0;
-  /* float: left; */
+  padding-left: 30px;
 }
 
 .single-card {

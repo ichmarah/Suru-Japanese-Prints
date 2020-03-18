@@ -8,10 +8,10 @@ There are two reasons why we want to start our HTTP calls in the created method.
 -->
 
 <template>
-  <section>
+  <div>
     <BaseLoader :isLoading="isLoading" />
     <div class="prints">
-      <div class="form-group col-md-4">
+      <div class="form-group col-md-4 home-sort">
         <p>Sort by:</p>
         <button
           type="button"
@@ -52,8 +52,8 @@ There are two reasons why we want to start our HTTP calls in the created method.
       aria-label="Page navigation example"
       :v-model="currentPage"
       :page-count="totalPages"
-      :page-range="3"
-      :margin-pages="2"
+      :page-range="2"
+      :margin-pages="1"
       :click-handler="clickHandler"
       :prev-text="'Previous'"
       :next-text="'Next'"
@@ -61,7 +61,7 @@ There are two reasons why we want to start our HTTP calls in the created method.
       :page-class="'page-item'"
     >
     </paginate>
-  </section>
+  </div>
 </template>
 
 <script lang="ts">
@@ -156,3 +156,34 @@ export default class Prints extends Vue {
   }
 }
 </script>
+
+<!-- To style the pagination package, remove scoped from style tag -->
+<style lang="css">
+.home-sort {
+  margin-left: 8px;
+}
+
+.btn-secondary {
+  font-size: 12px !important;
+  margin: 0 3px;
+  padding: 5px !important;
+}
+
+.pagination {
+  margin-left: 16px !important;
+}
+
+.page-item {
+  margin: 0 5px;
+  border: 1px solid;
+  border-radius: 5px;
+  width: 30px;
+  font-size: 12px;
+  padding: 2px 1px;
+}
+
+.page-item.active {
+  background-color: #2c3e50;
+  color: #fff;
+}
+</style>
