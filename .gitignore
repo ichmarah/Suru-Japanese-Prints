@@ -30,4 +30,4 @@ yarn-error.log*
 .browserslistrc
 
 # Keys
-.keys.ts
+/src/keys.ts
