@@ -46,10 +46,29 @@
       <div v-if="!object.related"></div>
       <div v-else class="col border-top">
         <div class="card" style="width: 18rem;">
-          <img src="" class="card-img-top" alt="..." />
+          <img
+            v-if="relatedPrints.primaryimageurl"
+            :src="relatedPrints.primaryimageurl"
+            class="card-img-top"
+            alt="Image of related print"
+          />
+          <p v-else><i>Image unavailable</i></p>
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">{{ this.relatedPrintsLinked }}</p>
+            <p v-if="!relatedPrints.people" class="card-text">
+              [Artist name unknown]
+            </p>
+            <p v-else class="card-title">
+              {{ relatedPrints.people[0].name }}
+            </p>
+            <p
+              v-if="!relatedPrints.title"
+              class="card-title single-card-dark-grey"
+            >
+              [Title unknown]
+            </p>
+            <h6 v-else class="card-title single-card-dark-grey">
+              {{ relatedPrints.title }}
+            </h6>
           </div>
         </div>
       </div>
@@ -72,7 +91,7 @@ export default class DetailPage extends Vue {
   object: Array<any> = []
   relatedCount: number = 0
   relatedPrints: Array<any> = []
-  relatedPrintsLinked: Array<any> = []
+  fetchRelatedPrints: Array<any> = []
   objectId: number = 0
   query: string = `https://api.harvardartmuseums.org/object/${this.objectid}?&apikey=${apikey}`
 
@@ -85,16 +104,16 @@ export default class DetailPage extends Vue {
           (this.isLoading = false),
           (this.relatedCount = response.data.relatedcount),
           (this.objectId = response.data.objectid),
-          (this.relatedPrints = response.data.related)
+          (this.fetchRelatedPrints = response.data.related)
         // If there are pages related to print, fetch these pages
         if (this.relatedCount > 0) {
           for (let index = 0; index < this.relatedCount; index++) {
             this.$http
               .get(
-                `https://api.harvardartmuseums.org/object/${this.relatedPrints[index].objectid}?&apikey=${apikey}`
+                `https://api.harvardartmuseums.org/object/${this.fetchRelatedPrints[index].objectid}?&apikey=${apikey}`
               )
               .then((response: AxiosResponse) => {
-                this.relatedPrintsLinked.push(response.data)
+                this.relatedPrints = response.data
               })
           }
         }

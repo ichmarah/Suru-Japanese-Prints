@@ -170,7 +170,8 @@ export default class Prints extends Vue {
 }
 
 .pagination {
-  margin-left: 16px !important;
+  padding-left: 16px !important;
+  margin: 0 auto !important;
 }
 
 .page-item {
@@ -185,5 +186,17 @@ export default class Prints extends Vue {
 .page-item.active {
   background-color: #2c3e50;
   color: #fff;
+}
+
+/*Small devices (landscape phones, 576px and up */
+@media (min-width: 414px) {
+  .pagination {
+    padding-left: 50px !important;
+    margin: 0 auto !important;
+  }
+}
+
+@media (min-width: 576px) {
+  
 }
 </style>
