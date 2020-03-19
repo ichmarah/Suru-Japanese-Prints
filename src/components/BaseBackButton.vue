@@ -17,8 +17,8 @@ export default class BaseBackButton extends Vue {
 
 <style lang="css">
 .go-back {
-  text-align: left;
-  padding-top: 10px;
   cursor: pointer;
+  padding-top: 10px;
+  text-align: left;
 }
 </style>

@@ -146,20 +146,14 @@ export default class Prints extends Vue {
 </script>
 
 <style lang="css">
-.home-sort {
-  margin-left: 8px;
-}
-
 .btn-secondary {
   font-size: 12px !important;
   margin: 0 3px;
   padding: 5px !important;
 }
 
-.pagination {
-  margin: 0 auto !important;
-  padding-bottom: 2em;
-  padding-left: 45px !important;
+.home-sort {
+  margin-left: 8px;
 }
 
 .page-item {
@@ -176,13 +170,20 @@ export default class Prints extends Vue {
   color: #fff;
 }
 
+.pagination {
+  margin: 0 auto !important;
+  padding-bottom: 2em;
+  padding-left: 45px !important;
+}
+
 /* Media query breakpoints */
 @media (min-width: 320px) {
-  .pagination {
-    padding-left: 12.5px !important;
-  }
   .card-columns {
     column-count: 1;
+  }
+
+  .pagination {
+    padding-left: 12.5px !important;
   }
 }
 
@@ -199,12 +200,12 @@ export default class Prints extends Vue {
 }
 
 @media (min-width: 768px) {
-  .form-group {
-    max-width: 100% !important;
-  }
-
   .btn-secondary {
     font-size: 14px !important;
+  }
+
+  .form-group {
+    max-width: 100% !important;
   }
 }
 

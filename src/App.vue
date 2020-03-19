@@ -21,18 +21,15 @@ export default class App extends Vue {}
 </script>
 
 <style lang="css">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
 .container {
+  color: #2c3e50;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
   max-width: 900px;
-  position: relative;
   min-height: 100vh;
+  position: relative;
+  text-align: center;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
 }
 
 .main-top-margin {
@@ -40,8 +37,8 @@ export default class App extends Vue {}
 }
 
 .router-view {
-  position: relative;
   padding-bottom: 3rem;
+  position: relative;
 }
 
 .top-heading {

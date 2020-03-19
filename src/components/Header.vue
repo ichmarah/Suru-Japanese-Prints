@@ -55,14 +55,14 @@ export default class Header extends Vue {
 </script>
 
 <style lang="css" scoped>
-.page-header {
-  padding: 15px 25px 0;
-}
-
 .navbar-brand {
   padding-left: 20px;
   font-size: 30px;
   font-weight: bold;
+}
+
+.navbar-brand.router-link-exact-active {
+  text-decoration: none !important;
 }
 
 .navbar-nav {
@@ -71,11 +71,11 @@ export default class Header extends Vue {
   margin-left: auto;
 }
 
-.router-link-exact-active {
-  text-decoration: underline !important;
+.page-header {
+  padding: 15px 25px 0;
 }
 
-.navbar-brand.router-link-exact-active {
-  text-decoration: none !important;
+.router-link-exact-active {
+  text-decoration: underline !important;
 }
 </style>

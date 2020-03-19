@@ -80,6 +80,11 @@ export default class Footer extends Vue {
   padding-bottom: 10px;
 }
 
+.footer-nav {
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
 .sitemap {
   text-align: left;
   margin-left: 12.5%;
@@ -89,11 +94,6 @@ export default class Footer extends Vue {
 .sitemap-col {
   margin-left: auto;
   margin-right: auto;
-}
-
-.footer-nav {
-  padding-bottom: 0;
-  padding-top: 0;
 }
 
 /* Media query breakpoint */
