@@ -82,11 +82,9 @@ import { apikey } from '../keys'
 // eslint-disable-next-line no-unused-vars
 import { AxiosResponse } from 'axios'
 
-@Component({
-  name: 'DetailPage'
-})
+@Component
 export default class DetailPage extends Vue {
-  @Prop({ type: Number, required: true }) objectid!: number // is passed down as prop because we set it as props: true in router.ts as well.
+  @Prop({ type: Number, required: true }) objectid!: number
   isLoading: boolean = true
   object: Array<any> = []
   relatedCount: number = 0

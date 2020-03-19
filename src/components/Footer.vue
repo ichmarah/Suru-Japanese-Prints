@@ -95,4 +95,12 @@ export default class Footer extends Vue {
   padding-bottom: 0;
   padding-top: 0;
 }
+
+/* Media query breakpoint */
+@media (min-width: 768px) {
+  .sitemap {
+    margin-left: 0 !important;
+    width: 250px;
+  }
+}
 </style>

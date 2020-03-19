@@ -1,12 +1,20 @@
 <template>
   <section>
     <h3 class="top-heading">Random</h3>
-    <p>Click the button to show a random print!</p>
+    <p class="responsive-paragraph">Click the button to show a random print!</p>
     <button class="btn btn-secondary btn-circle btn-xl" @click="getRandomPrint">
       Click me!
     </button>
-    <BaseLoader :isLoading="isLoading" />
-    <BaseSinglePrint v-for="(item, index) in items" :key="index" :item="item" />
+    <div class="loader">
+      <BaseLoader class="random-card" :isLoading="isLoading" />
+    </div>
+    <div class="random-card">
+      <BaseSinglePrint
+        v-for="(item, index) in items"
+        :key="index"
+        :item="item"
+      />
+    </div>
   </section>
 </template>
 
@@ -16,7 +24,7 @@ import { apikey } from '../keys'
 // eslint-disable-next-line no-unused-vars
 import { AxiosResponse } from 'axios'
 
-@Component({})
+@Component
 export default class Random extends Vue {
   items: Array<any> = []
   totalRecordsPerQuery: number = 1
@@ -25,7 +33,6 @@ export default class Random extends Vue {
 
   async getPrints(query: string): Promise<void> {
     this.isLoading = true
-    // created() is used for fetching data after component is created
     await this.$http
       .get(query)
       .then((response: AxiosResponse) => {
@@ -57,5 +64,19 @@ export default class Random extends Vue {
 
 .btn-secondary {
   font-size: 16px !important;
+}
+
+.loader {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+/* Media query */
+@media (min-width: 992px) {
+  .random-card {
+    max-width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 </style>

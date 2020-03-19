@@ -1,12 +1,12 @@
 <template>
   <section>
     <h3 class="top-heading">20th Century prints</h3>
-    <p>
+    <p class="responsive-paragraph">
       In this category, you can go through prints that are dated in the
       twentieth century. Click on each print to get more details.
     </p>
     <BaseLoader :isLoading="isLoading" />
-    <div class="prints">
+    <div class="card-columns">
       <BaseSinglePrint
         v-for="(item, index) in items"
         :key="index"
@@ -34,12 +34,11 @@ import { Component, Vue } from 'vue-property-decorator'
 import { apikey } from '../keys'
 // eslint-disable-next-line no-unused-vars
 import { AxiosResponse } from 'axios'
-// import BaseSinglePrint from '../components/BaseSinglePrint.vue'
 
-@Component({})
+@Component
 export default class Categories extends Vue {
   items: Array<any> = []
-  currentPage: number = 0 // Harvard Art's data shows 1 page having 10 records
+  currentPage: number = 0
   totalPages: any = 0
   totalRecordsPerQuery: number = 0
   isLoading: boolean = true
@@ -50,7 +49,6 @@ export default class Categories extends Vue {
 
   async getPrints(query: string): Promise<void> {
     this.isLoading = true
-    // created() is used for fetching data after component is created
     await this.$http
       .get(query)
       .then((response: AxiosResponse) => {
@@ -67,7 +65,6 @@ export default class Categories extends Vue {
   }
 
   getNext(): any {
-    // this.next = nextPageQuery
     this.getPrints(this.next)
   }
 
@@ -75,6 +72,7 @@ export default class Categories extends Vue {
     this.getPrints(this.previous)
   }
 
+  // Clicking page number in paginate shows the coresponding page
   clickHandler(pageNumber: number): any {
     this.currentPage = pageNumber
     if (pageNumber) {
@@ -87,3 +85,14 @@ export default class Categories extends Vue {
   }
 }
 </script>
+
+<style lang="css">
+/* Media query breakpoint*/
+@media (min-width: 567px) {
+  .responsive-paragraph {
+    max-width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+</style>

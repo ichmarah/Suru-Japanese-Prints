@@ -1,8 +1,3 @@
-<!-- 
-  Since Bootstrap has the option of adding "show" to the collapsable menu, I can bind a class to that with a ternary operator where show is true or false.
-  However, true or false in show need to only change when the menu button is clicked. 
-  Meaning, the button needs to get an @click refering to a function (in this case onClick). This functions changes the value of show to true or false, depending on the initial value of show.
--->
 <template>
   <header class="page-header">
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
@@ -46,15 +41,15 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import Component from 'vue-class-component'
+import { Component, Vue } from 'vue-property-decorator'
 
 @Component
 export default class Header extends Vue {
   show: boolean = false
 
+  // Event to toggle menu collapse or not
   onClick(): boolean {
-    return (this.show = !this.show) // show beocmes true, meaning, the bound class gets "show" as part of the class name
+    return (this.show = !this.show)
   }
 }
 </script>
@@ -74,5 +69,13 @@ export default class Header extends Vue {
   padding-right: 35px;
   margin-bottom: 0;
   margin-left: auto;
+}
+
+.router-link-exact-active {
+  text-decoration: underline !important;
+}
+
+.navbar-brand.router-link-exact-active {
+  text-decoration: none !important;
 }
 </style>

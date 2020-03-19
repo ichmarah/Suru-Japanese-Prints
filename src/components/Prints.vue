@@ -1,12 +1,3 @@
-<!--
-Source:https://ordina-jworks.github.io/frontend/2019/03/04/vue-with-typescript.html
-A Vue component has multiple lifecycle hooks with the most interesting ones for what we want to do: created() and mounted(). Created is called by Vue when the object is created: reactive data is set up, event callbacks are ready and the object is not yet mounted on the DOM. The Vue object will thus be ready to go but it will not yet be visible to the user. The mounted hook is used for when the element is mounted into the HTML DOM, which means the rendering is performed by the browser.
-
-Since we installed and imported VueAxios, "This wrapper bind axios to Vue or this if you're using single file component." (source: https://www.npmjs.com/package/vue-axios). We can use this.$http.get(http://...).
-
-There are two reasons why we want to start our HTTP calls in the created method. The first reason is that we can limit the amount of time the user has to wait for data to be loaded and shown on the screen. The second one is that the mounted hook is not called when we would use serverside rendering. (To ensure that our code is compatible with all use cases, we place the HTTP calls in the created method of our App.vue)
--->
-
 <template>
   <div>
     <BaseLoader :isLoading="isLoading" />
@@ -42,11 +33,13 @@ There are two reasons why we want to start our HTTP calls in the created method.
           Artist Z - A
         </button>
       </div>
-      <BaseSinglePrint
-        v-for="(item, index) in items"
-        :key="index"
-        :item="item"
-      />
+      <div class="card-columns">
+        <BaseSinglePrint
+          v-for="(item, index) in items"
+          :key="index"
+          :item="item"
+        />
+      </div>
     </div>
     <paginate
       aria-label="Page navigation example"
@@ -69,10 +62,8 @@ import { Component, Vue } from 'vue-property-decorator'
 import { apikey } from '../keys'
 // eslint-disable-next-line no-unused-vars
 import { AxiosResponse } from 'axios'
-// import BaseSinglePrint from './BaseSinglePrint.vue'
-// import Loader from './Loader.vue' // Since we put Loader component as global, we do not have to import it. We just need to add the component in <template>
 
-@Component({})
+@Component
 export default class Prints extends Vue {
   items: Array<any> = []
   currentPage: number = 0 // Harvard Art's data shows 1 page having 10 records
@@ -117,10 +108,8 @@ export default class Prints extends Vue {
     })
   }
 
-  //The data sorted only when using created(). If not used but with another function name, the data will load but refresh again when sorted.
   async getPrints(query: string): Promise<void> {
     this.isLoading = true
-    // created() is used for fetching data after component is created
     await this.$http
       .get(query)
       .then((response: AxiosResponse) => {
@@ -136,7 +125,6 @@ export default class Prints extends Vue {
   }
 
   getNext(): any {
-    // this.next = nextPageQuery
     this.getPrints(this.next)
   }
 
@@ -157,7 +145,6 @@ export default class Prints extends Vue {
 }
 </script>
 
-<!-- To style the pagination package, remove scoped from style tag -->
 <style lang="css">
 .home-sort {
   margin-left: 8px;
@@ -170,8 +157,9 @@ export default class Prints extends Vue {
 }
 
 .pagination {
-  padding-left: 16px !important;
   margin: 0 auto !important;
+  padding-bottom: 2em;
+  padding-left: 45px !important;
 }
 
 .page-item {
@@ -188,15 +176,41 @@ export default class Prints extends Vue {
   color: #fff;
 }
 
-/*Small devices (landscape phones, 576px and up */
+/* Media query breakpoints */
+@media (min-width: 320px) {
+  .pagination {
+    padding-left: 12.5px !important;
+  }
+  .card-columns {
+    column-count: 1;
+  }
+}
+
 @media (min-width: 414px) {
   .pagination {
-    padding-left: 50px !important;
-    margin: 0 auto !important;
+    padding-left: 40px !important;
   }
 }
 
 @media (min-width: 576px) {
-  
+  .card-columns {
+    column-count: 2 !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .form-group {
+    max-width: 100% !important;
+  }
+
+  .btn-secondary {
+    font-size: 14px !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .card-columns {
+    column-count: 3 !important;
+  }
 }
 </style>

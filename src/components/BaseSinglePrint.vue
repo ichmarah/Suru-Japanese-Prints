@@ -1,39 +1,35 @@
-<!-- 
-Source: https://router.vuejs.org/api/#to
-Since we are passing along the Prints.vue prop of one item , we need to bind the name of the prop to the router-link (which takes us to DetailsPage). Since we want to refer to the API details of this specific item when clicking on the item, we need to have a path were we can find the item in the API. This means, including the Objectid of the item.
-However, since we need to inlcude 'params' in the v-bind:to for the path of this item, we need to also put params as a prop to be sent to the parent Prints.vue. Prints.vue will receive it as a prop
--->
 <template>
   <router-link
     :to="{ name: 'DetailPage', params: { objectid: (number = item.objectid) } }"
   >
-    <div class="card-body">
-      <div class="single-card">
-        <!-- If item.primaryimageurl = null in JSON file, a message informs the client about this -->
-        <img
-          v-if="item.primaryimageurl"
-          :src="item.primaryimageurl"
-          class="card-img-top"
-          alt="Image of print"
-        />
-        <p v-else><i>No image available at the moment</i></p>
-        <p class="card-text single-card-grey">{{ item.objectnumber }}</p>
-        <!-- Some items do not have name included as data -->
-        <h6 v-if="!item.people" class="card-text single-card-black">
+    <div class="card">
+      <img
+        v-if="item.primaryimageurl"
+        :src="item.primaryimageurl"
+        class="card-img-top"
+        alt="Image of print"
+      />
+      <!-- If 'item.primaryimageurl: null', altnerative text provided -->
+      <p v-else><i>No image available at the moment</i></p>
+
+      <div>
+        <p class="card-text card-grey">{{ item.objectnumber }}</p>
+        <h6 v-if="!item.people" class="card-text card-black">
           [Artist name unknown]
         </h6>
-        <p v-else class="card-text single-card-black">
+        <p v-else class="card-text card-black">
           {{ item.people[0].name }}
         </p>
+      </div>
 
-        <p class="card-title single-card-dark-grey">{{ item.title }}</p>
-        <!-- Some items have dated: null as date -->
-        <p v-if="item.dated" class="card-title single-card-dark-grey">
+      <div>
+        <p class="card-title card-dark-grey">{{ item.title }}</p>
+        <p v-if="item.dated" class="card-title card-dark-grey">
           {{ item.dated }}
         </p>
         <p
           v-show="!item.dated || item.date === null"
-          class="card-title single-card-dark-grey"
+          class="card-title card-dark-grey"
         >
           [Date unknown]
         </p>
@@ -43,27 +39,20 @@ However, since we need to inlcude 'params' in the v-bind:to for the path of this
 </template>
 
 <script lang="ts">
-// import 'reflect-metadata'
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
-@Component({
-  name: 'BaseSinglePrint'
-})
+@Component
 export default class BaseSinglePrint extends Vue {
   @Prop({ type: Object, required: true }) item!: Object
-  // constructor() {
-  //   super()
-  //   // console.log(this.item)
-  // }
 }
 </script>
 
 <style lang="css" scoped>
-.card-body {
-  padding-left: 30px;
+.card-deck {
+  padding-left: 15px;
 }
 
-.single-card {
+.card {
   text-align: left;
   border: 1px solid #dbdbdb;
   border-radius: 10px;
@@ -71,21 +60,21 @@ export default class BaseSinglePrint extends Vue {
   padding: 10px;
 }
 
-.single-card-grey {
+.card-grey {
   color: #999;
 }
 
-.single-card:hover {
+.card:hover {
   box-shadow: 0 0px 2.7px rgba(0, 0, 0, 0.02), 0 0px 6.4px rgba(0, 0, 0, 0.028),
     0 0px 12px rgba(0, 0, 0, 0.035), 0 0px 21.4px rgba(0, 0, 0, 0.042),
     0 0px 40.1px rgba(0, 0, 0, 0.05), 0 0px 96px rgba(0, 0, 0, 0.07);
 }
 
-.single-card-black {
+.card-black {
   color: #000;
 }
 
-.single-card-dark-grey {
+.card-dark-grey {
   color: #666;
 }
 </style>

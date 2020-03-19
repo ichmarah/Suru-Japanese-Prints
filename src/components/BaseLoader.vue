@@ -11,9 +11,7 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
 
-@Component({
-  name: 'BaseLoader'
-})
+@Component
 export default class BaseLoader extends Vue {
   @Prop({ type: Boolean, required: true }) isLoading!: boolean
 }

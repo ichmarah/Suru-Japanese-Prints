@@ -5,7 +5,9 @@
 </template>
 
 <script>
-import Vue from 'vue'
+import { Component, Vue } from 'vue-property-decorator'
+
+@Component
 export default class BaseBackButton extends Vue {
   goBack() {
     window.history.back()
@@ -17,5 +19,6 @@ export default class BaseBackButton extends Vue {
 .go-back {
   text-align: left;
   padding-top: 10px;
+  cursor: pointer;
 }
 </style>
