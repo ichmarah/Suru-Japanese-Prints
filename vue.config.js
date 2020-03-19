@@ -1,3 +1,5 @@
 module.exports = {
-  publicPath: 'Suru-Japanese-Prints'
+  publicPath: process.env.NODE_ENV === 'production'
+  ? 'Suru-Japanese-Prints'
+  : '/'
 }
