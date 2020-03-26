@@ -7,7 +7,7 @@ Suru is a website I created as a take-home test for a traineeship position at [D
 [Ichmarah Kock](https://www.linkedin.com/in/ichmarah)
 
 ## Setup :rocket:
-* Clone this project from https://github.com/ichmarah/DTT-test
+* Clone this project from https://github.com/ichmarah/Suru-Japanese-Prints
 * Install [Node](https://nodejs.org)
 * At root of project type `npm install && npm run serve` or `yarn install && yarn serve`
  to install the dependencies and to run in development mode
