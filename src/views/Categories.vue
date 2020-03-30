@@ -87,7 +87,7 @@ export default class Categories extends Vue {
 </script>
 
 <style lang="css">
-/* Media query breakpoint*/
+/* Media query breakpoint */
 @media (min-width: 567px) {
   .responsive-paragraph {
     max-width: 50%;
