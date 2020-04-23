@@ -21,7 +21,7 @@ yarn-error.log*
 *.sw?
 
 # Linters
-# .eslintrc.js
+.eslintrc.js
 
 # Prettier
 .prettierrc.js
