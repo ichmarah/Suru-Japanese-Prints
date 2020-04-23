@@ -1,5 +1,8 @@
 # Suru
 
+## Live demo
+https://surujapaneseprints.netlify.app/
+
 ## About
 Suru is a website I created as a take-home test for a traineeship position at [DTT](https://www.d-tt.nl/). The public API was retrieved from the [Harvard Art Museum](https://www.harvardartmuseums.org/). When cloning this project from Github, you would have to request an API key. The [Harvard Art Museum API documentation](https://github.com/harvardartmuseums/api-docs) provides information how to request a key.     
 
