@@ -1,0 +1,48 @@
+{
+  "name": "dtt-test",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "core-js": "^3.6.4",
+    "jquery": "^3.5.0",
+    "vue": "^2.6.11",
+    "vue-axios": "^2.1.5",
+    "vue-class-component": "^7.2.2",
+    "vue-property-decorator": "^8.3.0",
+    "vue-router": "^3.1.6",
+    "vuejs-paginate": "^2.1.0"
+  },
+  "devDependencies": {
+    "@babel/polyfill": "^7.8.7",
+    "@typescript-eslint/eslint-plugin": "^2.23.0",
+    "@typescript-eslint/parser": "^2.23.0",
+    "@vue/cli-plugin-babel": "^4.2.3",
+    "@vue/cli-plugin-eslint": "^4.2.3",
+    "@vue/cli-plugin-router": "^4.2.3",
+    "@vue/cli-plugin-typescript": "^4.2.3",
+    "@vue/cli-service": "^4.2.3",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "@vue/eslint-config-typescript": "^5.0.2",
+    "babel-eslint": "^10.1.0",
+    "bootstrap": "^4.4.1",
+    "eslint": "^6.7.2",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-vue": "^6.2.2",
+    "mutationobserver-shim": "^0.3.3",
+    "popper.js": "^1.16.1",
+    "portal-vue": "^2.1.6",
+    "prettier": "^1.19.1",
+    "sass": "^1.26.3",
+    "sass-loader": "^8.0.0",
+    "typescript": "~3.7.5",
+    "vue-cli-plugin-bootstrap-vue": "^0.6.0",
+    "vue-cli-plugin-vuetify": "^2.0.5",
+    "vue-template-compiler": "^2.6.11"
+  }
+}
