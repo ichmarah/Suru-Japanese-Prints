@@ -72,7 +72,11 @@ export default class Prints extends Vue {
   isLoading: boolean = true
   next: string = ''
   previous: string = ''
-  query: string = `https://api.harvardartmuseums.org/object?&apikey=${apikey}&worktype=print&culture=Japanese&hasimage=1&sort=title&sortorder=desc`
+  /*
+  Harvard Museum API gives a 500 status when sort=title is included. Reason: "CircuitBreakingException[[parent] Data too large, data for [title] would be larger than limit of [727213670/693.5mb]]".
+  The query has been changed as follows by removing sort=title:
+  */
+  query: string = `https://api.harvardartmuseums.org/object?&apikey=${apikey}&worktype=print&culture=Japanese&hasimage=1&sortorder=desc`
 
   sortPrintsBy(sorting: any): any {
     this.items.sort((a, b): number => {
